@@ -22,6 +22,9 @@ class mysql::params {
     'Ubuntu': {
       $service_provider = upstart
     }
+    'Archlinux': {
+      $service_provider = systemd
+    }
     default: {
       $service_provider = undef
     }
@@ -144,6 +147,26 @@ class mysql::params {
           $ssl_ca                = '/etc/mysql/cacert.pem'
           $ssl_cert              = '/etc/mysql/server-cert.pem'
           $ssl_key               = '/etc/mysql/server-key.pem'
+        }
+
+        'Archlinux': {
+          $basedir              = '/usr'
+          $datadir              = '/var/lib/mysql'
+          $service_name         = 'mysqld'
+          $client_package_name  = 'libmysqlclient'
+          $server_package_name  = 'mysql'
+          $socket               = '/run/mysqld/mysqld.sock'
+          $pidfile              = '/var/run/mysqld/mysqld.pid'
+          $config_file          = '/etc/mysql/my.cnf'
+          $log_error            = '/var/log/mysql/error.log'
+          $ruby_package_name    = 'libmysql-ruby'
+          $python_package_name  = 'mysql-python'
+          $php_package_name     = 'php5-mysql'
+          $java_package_name    = 'libmysql-java'
+          $root_group           = 'root'
+          $ssl_ca               = '/etc/mysql/cacert.pem'
+          $ssl_cert             = '/etc/mysql/server-cert.pem'
+          $ssl_key              = '/etc/mysql/server-key.pem'
         }
 
         default: {
