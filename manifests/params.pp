@@ -169,6 +169,26 @@ class mysql::params {
           $ssl_key              = '/etc/mysql/server-key.pem'
         }
 
+        'Gentoo': {
+          $basedir              = '/usr'
+          $datadir              = '/var/lib/mysql'
+          $service_name         = 'mysql'
+          $client_package_name  = 'mysql'
+          $server_package_name  = 'mysql'
+          $socket               = '/run/mysqld/mysqld.sock'
+          $pidfile              = '/var/run/mysqld/mysqld.pid'
+          $config_file          = '/etc/mysql/my.cnf'
+          $log_error            = '/var/log/mysql/error.log'
+          $ruby_package_name    = 'mysql-ruby'
+          $python_package_name  = 'mysql-python'
+          $php_package_name     = 'PEAR-MDB2_Driver_mysql'
+          $java_package_name    = 'jdbc-mysql'
+          $root_group           = 'root'
+          $ssl_ca               = '/etc/mysql/cacert.pem'
+          $ssl_cert             = '/etc/mysql/server-cert.pem'
+          $ssl_key              = '/etc/mysql/server-key.pem'
+        }
+
         default: {
           fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily RedHat, Debian, and FreeBSD, or operatingsystem Amazon")
         }
