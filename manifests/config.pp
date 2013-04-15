@@ -77,6 +77,13 @@ class mysql::config(
     fail('The ssl_key parameter is required when ssl is true')
   }
 
+  if $operatingsystem == 'Gentoo' {
+      exec { 'mysql_install_db':
+          command => '/usr/bin/mysql_install_db',
+          logoutput => on_failure,
+      }
+  }
+
   # This kind of sucks, that I have to specify a difference resource for
   # restart.  the reason is that I need the service to be started before mods
   # to the config file which can cause a refresh
